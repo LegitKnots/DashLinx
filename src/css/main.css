@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+html {
+	color: white;
+	font-family: "Raleway", sans-serif;
+	height: auto;
+	overflow: auto;
+	text-align: center;
+}
+body {
+	background-image: url("../images/background.png");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+.title {
+	position: fixed;
+	overflow: hidden;
+	display: flex;
+	width: 45%;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	height: 75px;
+	margin: 0 auto;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	line-height: 0;
+	border-radius: 0 0 25px 25px;
+	border: none;
+	background-color: rgba(255, 255, 255, 0.4) !important;
+  	backdrop-filter: blur(10px);
+  	-webkit-backdrop-filter: blur(10px);
+  	transition: all 0.5s ease;
+}
+.titlecontent {
+	margin-top: 1vh;
+	width: auto;
+}
+.title.title-scrolled {
+	width: 17%;
+	height: 40px;
+	float: left;
+	display: block;
+	right: auto;
+	border-radius: 0 0 25px 0;
+	transition: all 0.5s ease;
+}
+h2.titlecontent {
+	padding-top: 1vh;
+}
+h2.titlecontent-scrolled {
+	font-size: 20px;
+}
+h3.titlecontent-scrolled {
+	display: none;
+}
+.top-spacer {
+	height: 80vh;
+	width: 100%;
+}
+footer {
+    padding: 10px 10px 0px 10px;
+    width: auto;
+    color: #e3e3e3;
+    bottom: -10px;
+}
+
+
+@media only screen and (max-width: 1422px) {
+	.title {
+		height: 80px;
+	}
+	.title.title-scrolled {
+		width: 100%;
+		height: 0px;
+		float: none;
+		display: block;
+		right: 0;
+		left: 0;
+		border-radius: 0 0 25px 0;
+		transition: all 0.5s ease;
+	}
+	h2.titlecontent-scrolled {
+		font-size: 20px;
+	}
+	h3.titlecontent-scrolled {
+		display: none;
+	}
+}
+@media only screen and (max-width: 895px) {
+	.title {
+		width: auto;
+	}
+}
+@media only screen and (max-width: 450px) {
+	.title {
+		transition: all 0.5s ease;
+	}
+	.title.title-scrolled {
+		width: 100%;
+		height: 0;
+		float: inherit;
+		display: flex;
+		right: auto;
+		border-radius: 0 0 25px 25px;
+	}
+	h2.titlecontent-scrolled {
+		font-size: 20px;
+	}
+	h3.titlecontent-scrolled {
+		display: none;
+	}
+}
+@media (max-aspect-ratio: 3/2) {
+  	body {
+		background-size: auto 100%;
+		background-position: center;
+	}
+}

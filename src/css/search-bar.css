@@ -1,0 +1,47 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12vh auto -10vh auto;
+  position: relative;
+}
+
+.search-bar input[type="text"] {
+  width: 30vw;
+  min-width: 310px !important;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px;
+  flex: 1;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button i {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+}
+
+.search-bar button:focus {
+  outline: none;
+}
+
+.search-bar form {
+  position: relative;
+}
+
+.search-bar button {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}

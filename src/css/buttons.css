@@ -1,0 +1,64 @@
+.shortcuttiles {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 15vh;
+	width: 75vw;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+.shortcut {
+	border-radius: 15px;
+    padding: 5px;
+    margin: 20px;
+    width: 310px;
+    min-width: 310px !important;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-size: 75%;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.25s ease-in-out;
+  	transition-property: transform, box-shadow, background-color;
+}
+.shortcut img {
+	height: auto;
+	width: 65px;
+	margin: 20px;
+}
+.shortcut h1 {
+	margin-right: 10px;
+}
+.shortcut:hover {
+	transform: scale(1.1);
+	background-color: rgba(255, 255, 255, 0.2) !important;
+  	box-shadow: rgba(0, 0, 0, 0.1) 0px 60px 40px -7px !important;
+  	cursor: pointer;
+}
+#lower-button {
+	width: auto;
+	height: 30px;
+	margin: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: none;
+	border-radius: 5px;
+	font-family: "Raleway", sans-serif;
+	color: white;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.25s ease-in-out;
+  	transition-property: transform, box-shadow, background-color;
+}
+#lower-button:hover {
+	transform: scale(1.1);
+	background-color: rgba(255, 255, 255, 0.2) !important;
+  	box-shadow: rgba(0, 0, 0, 0.1) 0px 60px 40px -7px !important;
+  	cursor: pointer;
+}

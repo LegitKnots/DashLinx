@@ -1,0 +1,89 @@
+input:hover, select:hover {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+input[type="text"],
+select,
+input[type="submit"] {
+	width: 30%;
+	padding: 8px;
+	border: none;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.4);
+	color: #000;
+	font-size: 16px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+	margin: 5px;
+}
+
+input[type="submit"] {
+	margin-top: 10px;
+}
+
+select option {
+	background-color: rgba(255, 255, 255, 0.4);
+	color: #000;
+	font-weight: bold;
+}
+
+/* Apply the same style to the select element within .content */
+.content select {
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	border-radius: 10px;
+}
+
+/* Apply the same style to the option elements within .content select */
+.content select option {
+	background-color: rgba(255, 255, 255, 0.4);
+	color: #000;
+	font-weight: bold;
+}
+
+input[type="submit"] {
+	width: 30%;
+	padding: 10px;
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+input[type="file"] {
+  width: 30%;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+input[type="file"]:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  
+  input[type="text"],
+	select,
+	input[type="submit"] {
+		width: 90%;
+	}
+
+	input[type="submit"] {
+		margin-top: 20px;
+	}
+  
+  input[type="file"] {
+    width: 90%;
+  }
+}

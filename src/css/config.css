@@ -1,0 +1,136 @@
+.content {
+	width: 50vw;
+	height: 75vh;
+	margin: 15vh auto 0 auto;
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: all 0.5s ease;
+	border-radius: 10px;
+	padding-bottom: 2vh;
+	overflow: hidden;
+}
+
+.forms-content {
+	width: inherit;
+	height: calc(75vh - 5%);
+	overflow-y: scroll;
+	margin-bottom: 5vh;
+}
+
+.tabbar {
+	padding-top: 3px;
+	width: inherit;
+	height: 5%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.tab {
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	text-align: center;
+	cursor: pointer;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.08);
+	border-radius: 10px;
+	margin: 0 5px;
+	transition: background-color 0.3s ease;
+}
+
+#active-tab {
+	background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.tab:hover, .bth:hover {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.spacer-hr {
+	margin: 3vh auto;
+	width: 85%;
+	height: 4px;
+	border: none;
+	border-radius: 50px;
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	backdrop-filter: blur(10px);
+}
+.bth {
+	padding: 10px 10px 0px 10px;
+	position: fixed;
+	width: auto;
+	color: #e3e3e3;
+	top: 10px;
+	left: 10px;
+	width: 5%;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.contrib-content {
+	margin: 30px auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.contrib-button {
+	border-radius: 15px;
+	padding: 5px;
+	margin: 20px;
+	width: 310px;
+	height: 85px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	font-family: "Raleway", sans-serif;
+	font-size: 75%;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: all 0.25s ease-in-out;
+	transition-property: transform, box-shadow, background-color;
+}
+.contrib-button img {
+	height: auto;
+	width: 65px;
+	margin: 20px;
+}
+.contrib-button h1 {
+	margin-right: 10px;
+}
+.contrib-button:hover {
+	transform: scale(1.1);
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 60px 40px -7px !important;
+	cursor: pointer;
+}
+
+footer {
+	padding: 10px 10px 0px 10px;
+	position: fixed;
+	width: auto;
+	color: #e3e3e3;
+	bottom: -10px;
+}
+
+
+@media screen and (max-width: 768px) {
+	.content {
+		width: 90vw;
+		height: 75vh;
+		margin: 10vh auto;
+	}
+}
