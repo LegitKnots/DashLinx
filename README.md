@@ -21,7 +21,7 @@ This will download and run the install script which installs all dependancies an
 `-P` Will let you specify a set password for the database that is created (Default is a randomly generated string)
 
 
-# Donate
+### Donate
 
  This dashboard project was created by AJP Networks as an open source project that may be freely distributed without license.
  I accept donations through PayPal at the following link
