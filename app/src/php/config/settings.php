@@ -98,7 +98,7 @@ $(document).ready(function() {
         var form_data = new FormData(this);
 
         $.ajax({
-            url: 'icon_upload_handler.php', // Replace with the appropriate server-side file handler
+            url: '/src/php/config/icon_upload_handler.php', // Replace with the appropriate server-side file handler
             type: 'post',
             data: form_data,
             contentType: false,
@@ -141,7 +141,7 @@ $(document).ready(function() {
         var form_data = new FormData(this);
 
         $.ajax({
-            url: 'background_upload_handler.php', // Replace with the appropriate server-side file handler
+            url: '/src/php/config/background_upload_handler.php', // Replace with the appropriate server-side file handler
             type: 'post',
             data: form_data,
             contentType: false,

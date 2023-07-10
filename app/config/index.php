@@ -3,20 +3,20 @@ require_once("../src/php/session.php");
 
 if (isset($_GET['tab'])) {
   if ($_GET['tab'] == "1") {
-  	$page = "button_acts.php";
+  	$page = "../src/php/config/button_acts.php";
   	$tabs = '<div class="tab" id="active-tab">Buttons</div><div class="tab" onclick="location.href=\'?tab=2\'">Settings</div><div class="tab" onclick="location.href=\'?tab=3\'">Contribute</div>';
   } elseif ($_GET['tab'] == "2") {
-  	$page = "settings.php";
+  	$page = "../src/php/config/settings.php";
   	$tabs = '<div class="tab" onclick="location.href=\'?tab=1\'">Buttons</div><div class="tab" id="active-tab">Settings</div><div class="tab" onclick="location.href=\'?tab=3\'">Contribute</div>';
   } elseif ($_GET['tab'] == "3") {
-  	$page = "contrib.php";
+  	$page = "../src/php/config/contrib.php";
   	$tabs = '<div class="tab" onclick="location.href=\'?tab=1\'">Buttons</div><div class="tab" onclick="location.href=\'?tab=2\'">Settings</div><div class="tab" id="active-tab">Contribute</div>';
   } else {
-  	$page = "button_acts.php";
+  	$page = "../src/php/config/button_acts.php";
   	$tabs = '<div class="tab" id="active-tab">Buttons</div><div class="tab" onclick="location.href=\'?tab=2\'">Settings</div><div class="tab" onclick="location.href=\'?tab=3\'">Contribute</div>';
   }
 } else {
-    $page = "button_acts.php";
+    $page = "../src/php/config/button_acts.php";
     $tabs = '<div class="tab" id="active-tab">Buttons</div><div class="tab" onclick="location.href=\'?tab=2\'">Settings</div><div class="tab" onclick="location.href=\'?tab=3\'">Contribute</div>';
 }
 ?>

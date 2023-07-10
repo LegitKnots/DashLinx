@@ -1,5 +1,5 @@
 <?php
-require_once("../src/php/session.php");
+require_once("../session.php");
 
 // Check if the file was uploaded without errors
 if ($_FILES['BGtoUpload']['error'] === UPLOAD_ERR_OK) {

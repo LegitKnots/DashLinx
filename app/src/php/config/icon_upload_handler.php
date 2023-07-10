@@ -1,5 +1,5 @@
 <?php
-require_once("../src/php/session.php");
+require_once("../session.php");
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if (!$connection) {

@@ -21,9 +21,9 @@ include('src/php/session.php');
       <h3 class="titlecontent" id="time"></h3>
   </div>
   <br class="top-spacer">
-      <?php require_once("src/php/search-bar.php");?>
+      <?php require_once("src/php/main/search-bar.php");?>
   <div class="shortcuttiles">
-      <?php require_once("src/php/get_buttons.php");?>
+      <?php require_once("src/php/main/get_buttons.php");?>
   </div>
 
 </body>

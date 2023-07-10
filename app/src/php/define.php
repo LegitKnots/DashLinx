@@ -6,6 +6,8 @@ if (file_exists('setup.php')) {
     include '../setup.php';
 } elseif (file_exists('../../setup.php')) {
     include '../../setup.php';
+} elseif (file_exists('../../../setup.php')) {
+    include '../../../setup.php';
 } else {
     // Handle the case when the setup file is not found
     echo "<br>Setup file not found.";
