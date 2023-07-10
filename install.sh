@@ -1,41 +1,96 @@
 #!/bin/bash
-sudo mkdir /var/log/dashlinx
-sudo touch /var/log/dashlinx/install.log
-sudo touch /var/log/dashlinx/database_password.log
-sudo chmod 755 /var/log/dashlinx
 
 log_file="/var/log/dashlinx/install.log"
-dbpsw="/var/log/dashlinx/database_password.log"
+sudo mkdir -p /var/log/dashlinx
+sudo rm -f "$log_file"
+sudo touch "$log_file"
+sudo chmod 755 "$log_file"
+
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo " ____            _     _     _ " | sudo tee -a "$log_file"
+echo "|  _ \\  __ _ ___| |__ | |   (_)_ __ __  __ " | sudo tee -a "$log_file"
+echo "| | | |/ _\` / __| '_ \\| |   | | '_ \\\\ \/ / " | sudo tee -a "$log_file"
+echo "| |_| | (_| \\__ \\ | | | |___| | | | |>  < " | sudo tee -a "$log_file"
+echo "|____/ \\__,_|___/_| |_|_____|_|_| |_/_/\\_\\" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 
 
 # Update the server
-echo "Updating the server..."
-sudo apt update | sudo tee -a "$log_file" >/dev/null
-sudo apt upgrade -y | sudo tee -a "$log_file" >/dev/null
-sudo apt dist-upgrade -y | sudo tee -a "$log_file" >/dev/null
-echo "Server Updated"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Updating the server...." | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get update | sudo tee -a "$log_file" >/dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y | sudo tee -a "$log_file" >/dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y | sudo tee -a "$log_file" >/dev/null
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Updated!" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+
+
 
 # Install LEMP stack
-echo "Installing necessary packages"
-echo "Installing nginx"
-sudo DEBIAN_FRONTEND=noninteractive apt install nginx -y | sudo tee -a "$log_file" >/dev/null
-echo "Installing mysql-server"
-sudo DEBIAN_FRONTEND=noninteractive apt install mysql-server -y | sudo tee -a "$log_file" >/dev/null
-echo "Installing php8.1-fpm"
-sudo DEBIAN_FRONTEND=noninteractive apt install php8.1-fpm -y | sudo tee -a "$log_file" >/dev/null
-echo "Installing php8.1-mysql"
-sudo DEBIAN_FRONTEND=noninteractive apt install php8.1-mysql -y | sudo tee -a "$log_file" >/dev/null
-echo "Installing Git"
-sudo DEBIAN_FRONTEND=noninteractive apt install git -y | sudo tee -a "$log_file" >/dev/null
-echo "Installing php-fpm"
-sudo DEBIAN_FRONTEND=noninteractive apt install php-fpm -y | sudo tee -a "$log_file" >/dev/null
-echo "All packages installed"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing nginx" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install nginx -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing mysql-server" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install mysql-server -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing php8.1-fpm" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install php8.1-fpm -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing php8.1-mysql" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install php8.1-mysql -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing git" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install git -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing php-fpm" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install php-fpm -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
 
 
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "All packages installed" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+
+
+
+
+
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Creating Configuration" | sudo tee -a "$log_file"
+echo "-------- -------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
 
 title="DashLinx"
 tab="DashLinx"
+port="80"
+
+dbpsw="/var/log/dashlinx/database_password.log"
 
 password=$(openssl rand -base64 6 | tr -d '+/' | cut -c1-8)
 
@@ -45,7 +100,6 @@ if [ -f "$dbpsw" ]; then
 fi
 
 
-port="80"
 
 # Parse command-line options and arguments
 while getopts "t:b:P:p:" opt; do
@@ -69,29 +123,49 @@ while getopts "t:b:P:p:" opt; do
   esac
 done
 
-echo "Cleaning Nginx"
+sudo rm -f /var/log/dashlinx/database_password.log | sudo tee -a "$log_file"
+sudo touch /var/log/dashlinx/database_password.log | sudo tee -a "$log_file"
+echo "$password" | sudo tee -a /var/log/dashlinx/database_password.log >/dev/null
 
+echo "Title: $title" | sudo tee -a "$log_file"
+echo "Browser Tab Title: $tab" | sudo tee -a "$log_file"
+echo "Port: $port" | sudo tee -a "$log_file"
+echo "Database Username: dashlinx" | sudo tee -a "$log_file"
+echo "Database Password: $password" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Cleaning Nginx" | sudo tee -a "$log_file"
 
 if [ -d "/var/www/html/src/images/uploaded" ]; then
-  sudo rm -R "/tmp/uploaded"
-  sudo rm "/tmp/background.png"
+  echo "Found old instalation" | sudo tee -a "$log_file"
+  echo "Saving Files" | sudo tee -a "$log_file"
+  sudo rm -f -R "/tmp/uploaded"
+  sudo rm -f "/tmp/background.png"
   sudo cp -R "/var/www/html/src/images/uploaded" "/tmp/uploaded"
   sudo cp "/var/www/html/src/images/background.png" "/tmp/background.png"
-  sudo rm -R /var/www/html/* | sudo tee -a "$log_file" >/dev/null
   restore=true
 else
   restore=false
-  echo "No images to restore"
+  echo "No images to restore" | sudo tee -a "$log_file"
 fi
-echo "Done"
 
+sudo rm -R /var/www/html/* | sudo tee -a "$log_file" >/dev/null
+echo "Done" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
-echo "Downloading DashLinx.."
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Downloading DashLinx" | sudo tee -a "$log_file"
 git clone https://github.com/AJPNetworks/DashLinx.git | sudo tee -a "$log_file" >/dev/null
+echo "Downloaded" | sudo tee -a "$log_file"
+echo "Installing" | sudo tee -a "$log_file"
 sudo cp -R DashLinx/app/* /var/www/html
-sudo rm -R DashLinx
-echo "Downloaded"
-echo "Configuring DashLinx"
+sudo rm -f -R DashLinx
+echo "Installed" | sudo tee -a "$log_file"
+echo "Configuring DashLinx" | sudo tee -a "$log_file"
 
 sudo rm /var/www/html/setup.php
 echo "<?php
@@ -103,57 +177,39 @@ echo "<?php
 \$db_name = 'dashlinx';
 \$root_dir = '/var/www/html';
 ?>" | sudo tee /var/www/html/setup.php >/dev/null
-echo "Configured"
 
 if [ "$restore" = true ]; then 
   sudo cp -R "/tmp/uploaded" "/var/www/html/src/images"
   sudo cp  "/tmp/background.png" "/var/www/html/src/images/background.png"
-  sudo rm -R "/tmp/uploaded"
-  sudo rm -R "/var/www/html/src/images/uploaded/uploaded"
-  sudo rm "/tmp/background.png"
-  echo "Images Restored"
+  sudo rm -f -R "/tmp/uploaded"
+  sudo rm -f -R "/var/www/html/src/images/uploaded"
+  sudo rm -f "/tmp/background.png"
+  echo "Images Restored" | sudo tee -a "$log_file"
 fi
 
-
-echo "Configuring Nginx"
-# Function to check and return the valid Nginx configuration file path
-find_nginx_conf() {
-  local nginx_conf_path="/etc/nginx/nginx.conf"
-  local alt_nginx_conf_path="/etc/nginx/conf/nginx.conf"
-
-  if [ -f "$nginx_conf_path" ]; then
-    echo "$nginx_conf_path"
-  elif [ -f "$alt_nginx_conf_path" ]; then
-    echo "$alt_nginx_conf_path"
-  else
-    echo "Nginx configuration file not found."
-  fi
-}
-
-# Get the valid Nginx configuration file path
-nginx_conf_file=$(find_nginx_conf)
-
-# Check if the file was found
-if [ "$nginx_conf_file" != "Nginx configuration file not found." ]; then
-  # Set the desired port number
-
-  # Use sed to change the port in the configuration file
-  sudo sed -i "s/^listen .*;$/listen $port;/" "$nginx_conf_file" | sudo tee -a "$log_file" >/dev/null
-
-  echo "Nginx port changed to $port."
-else
-  echo "Nginx configuration file not found. Port not changed."
-fi
+echo "Configured" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
 
-# Get PHP version
-PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION;')
 
-# Configure PHP-FPM
-sudo sed -i "s|listen = /run/php/php.*-fpm.sock|listen = /run/php/php${PHP_VERSION}-fpm.sock|" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf | sudo tee -a "$log_file" >/dev/null
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Configuring Nginx" | sudo tee -a "$log_file"
 
-# Configure Nginx
-sudo tee /etc/nginx/sites-available/default >/dev/null <<EOT
+# Define configurations
+nginx_conf="/etc/nginx/nginx.conf"
+nginx_directive="client_max_body_size"
+max_upload_size="20M"
+
+
+
+# Function to update Nginx configuration
+update_nginx_configuration() {
+  # Update Nginx Configuration
+  sudo sed -i "/^http {/a \\\t$nginx_directive $max_upload_size;" "$nginx_conf"
+
+  # Update Nginx default site
+  sudo tee /etc/nginx/sites-available/default >/dev/null <<EOT
 server {
     listen $port default_server;
     listen [::]:$port default_server;
@@ -174,51 +230,126 @@ server {
 }
 EOT
 
-# Restart services
-sudo service php${PHP_VERSION}-fpm restart
-sudo service nginx restart
-echo "Configured"
+  echo "Configuration file updated" | sudo tee -a "$log_file"
+}
 
-echo "Creating Database"
-sudo mysql -e "CREATE DATABASE dashlinx;" | sudo tee -a "$log_file" >/dev/null
-sudo mysql -e "CREATE USER 'dashlinx'@'localhost' IDENTIFIED BY '$password';" | sudo tee -a "$log_file" >/dev/null
-sudo mysql -e "GRANT ALL PRIVILEGES ON dashlinx.* TO 'dashlinx'@'localhost';" | sudo tee -a "$log_file" >/dev/null
-echo "Created"
+# Update Nginx configuration
+if [ -f "$nginx_conf" ]; then
+  sudo sed -i "s/^listen .*;$/listen $port;/" "$nginx_conf" | sudo tee -a "$log_file" >/dev/null
+  echo "Nginx port changed to $port."
+else
+  echo "Nginx configuration file not found. Port not changed."
+fi
+
+# Call the update_nginx_configuration function
+update_nginx_configuration
+echo "Done!" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
 
-#sudo ufw allow 80
-echo "Opening firewall port $port"
-sudo ufw allow $port
-echo "Reloading Firewall"
-sudo ufw reload
-echo "Reloaded"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Configuring PHP-FPM" | sudo tee -a "$log_file"
+# Get PHP version
+PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION;')
+
+# Define PHP configuration
+php_ini_files=(
+  "/etc/php/8.1/fpm/php.ini" 
+  "/etc/php/8.1/cli/php.ini"
+)
+
+# Function to update PHP configuration
+update_php_configuration() {
+  # Update PHP Configuration
+  for php_ini_file in "${php_ini_files[@]}"; do
+    sudo sed -i "s/^post_max_size.*/post_max_size = $max_upload_size/" "$php_ini_file"
+    sudo sed -i "s/^upload_max_filesize.*/upload_max_filesize = $max_upload_size/" "$php_ini_file"
+  done
+
+  # Configure PHP-FPM
+  sudo sed -i "s|listen = /run/php/php.*-fpm.sock|listen = /run/php/php${PHP_VERSION}-fpm.sock|" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf | sudo tee -a "$log_file" >/dev/null
+}
+
+# Call the update_php_configuration function
+update_php_configuration
+echo "Done!" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+
+
+
+
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Creating Database" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS dashlinx;" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE USER 'dashlinx'@'localhost' IDENTIFIED BY '$password';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "GRANT ALL PRIVILEGES ON dashlinx.* TO 'dashlinx'@'localhost';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+echo "Created" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+
+
+# Check if ufw is installed
+if command -v ufw >/dev/null 2>&1; then
+    echo "ufw is installed"
+    echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+    echo "Opening firewall port $port" | sudo tee -a "$log_file"
+    sudo ufw allow $port | sudo tee -a "$log_file"
+    echo "Reloading Firewall" | sudo tee -a "$log_file"
+    sudo ufw reload | sudo tee -a "$log_file"
+    echo "Reloaded" | sudo tee -a "$log_file"
+    echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+    echo "" | sudo tee -a "$log_file"
+else
+    echo "ufw is not installed. Skipping firewall configuration." | sudo tee -a "$log_file"
+fi
+
 
 # Start and enable Nginx
-echo "Starting Nginx"
-sudo systemctl start nginx | sudo tee -a "$log_file" >/dev/null
-sudo systemctl enable nginx | sudo tee -a "$log_file" >/dev/null
-echo "Started"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Starting Nginx" | sudo tee -a "$log_file"
+sudo systemctl start nginx | sudo tee -a "$log_file"
+sudo systemctl enable nginx | sudo tee -a "$log_file"
+echo "Started" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
 # Start and enable MySQL
-echo "Starting MySQL"
-sudo systemctl start mysql | sudo tee -a "$log_file" >/dev/null
-sudo systemctl enable mysql | sudo tee -a "$log_file" >/dev/null
-echo "Started"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Starting MySQL" | sudo tee -a "$log_file"
+sudo systemctl start mysql | sudo tee -a "$log_file"
+sudo systemctl enable mysql | sudo tee -a "$log_file"
+echo "Started" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
 
 # Start and enable PHP-FPM
-echo "Starting PHP"
-sudo systemctl start php8.1-fpm | sudo tee -a "$log_file" >/dev/null
-sudo systemctl enable php8.1-fpm | sudo tee -a "$log_file" >/dev/null
-echo "Started"
-
-echo "Setting permissions"
-sudo chown -R www-data:www-data /var/www/html
-echo "Done"
-
-sudo service php${PHP_VERSION}-fpm restart
-sudo service nginx restart
-
-echo "Nginx is listening on port $port"
-echo "INSTALLED"
-ip_address=$(ip -4 route get 8.8.8.8 | awk '/src/ {print $7}')
-echo "You can now go to http://$ip_address:$port and configure DashLinx!"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Starting PHP" | sudo tee -a "$log_file"
+sudo systemctl start php8.1-fpm | sudo tee -a "$log_file"
+sudo systemctl enable php8.1-fpm | sudo tee -a "$log_file"
+echo "Started" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Setting permissions" | sudo tee -a "$log_file"
+sudo chown -R www-data:www-data /var/www/html | sudo tee -a "$log_file"
+echo "Done" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Restarting Services" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo service php8.1-fpm restart | sudo tee -a "$log_file"
+sudo service nginx restart | sudo tee -a "$log_file"
+echo "" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Nginx is listening on port $port" | sudo tee -a "$log_file"
+echo "INSTALLED" | sudo tee -a "$log_file"
+ip_address=$(ip -4 route get 1.1.1.1 | awk '/src/ {print $7}' | sudo tee -a "$log_file")
+echo "You can now go to http://$ip_address:$port and configure DashLinx!" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
