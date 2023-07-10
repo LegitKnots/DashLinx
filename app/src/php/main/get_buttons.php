@@ -52,7 +52,7 @@ if (mysqli_num_rows($result) > 0) {
         }
     }
 } else {
-    echo "<div class='shortcut' onclick='window.location.href=\"/config\"'><img src='/src/images/add_icon.png'><h1>Click here to add buttons</h1></div>";
+    echo "<div class='shortcut' onclick='window.location.href=\"/config\"'><img src='/src/images/icons/add_icon.png'><h1>Click here to add buttons</h1></div>";
 }
 
 // Close the database connection
