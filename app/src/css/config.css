@@ -7,7 +7,7 @@
 	-webkit-backdrop-filter: blur(10px);
 	transition: all 0.5s ease;
 	border-radius: 10px;
-	padding-bottom: 2vh;
+	padding-bottom: 100vh;
 	overflow: hidden;
 }
 
@@ -19,9 +19,9 @@
 }
 
 .tabbar {
-	padding-top: 3px;
+	padding: 3px auto;
 	width: inherit;
-	height: 5%;
+	height: 45px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -67,7 +67,7 @@
 	color: #e3e3e3;
 	top: 10px;
 	left: 10px;
-	width: 5%;
+	width: 100px;
 	padding: 10px;
 	font-size: 16px;
 	font-weight: bold;
@@ -126,11 +126,31 @@ footer {
 	bottom: -10px;
 }
 
+@media screen and (max-width: 1200px) {
+	.contrib-content {
+		flex-direction: column;
+	}
 
-@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 895px) {
+	.bth {
+		position: static;
+		margin-top: calc(75px + 2vh);
+		margin-bottom: none;
+		left: 0;
+		width: 150px;
+	}
 	.content {
 		width: 90vw;
 		height: 75vh;
-		margin: 10vh auto;
+		margin: 2vh auto;
+		padding-bottom: 5vh;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.content {
+		width: 95vw;
+		height: 75vh;
 	}
 }
