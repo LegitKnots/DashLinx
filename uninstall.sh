@@ -39,6 +39,9 @@ sudo rm /etc/php/8.1/cli/php.ini
 # Uninstall packages if they are installed
 if dpkg-query -W -f='${Status}' nginx 2>/dev/null | grep -q "ok installed"; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y nginx
+    sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y nginx-light
+    sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y nginx-common
+    sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y nginx-core
 fi
 
 if dpkg-query -W -f='${Status}' mysql-server 2>/dev/null | grep -q "ok installed"; then
@@ -56,6 +59,8 @@ fi
 if dpkg-query -W -f='${Status}' php-fpm 2>/dev/null | grep -q "ok installed"; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y php-fpm
 fi
+
+
 
 # Autoremove
 sudo apt-get autoremove -y
