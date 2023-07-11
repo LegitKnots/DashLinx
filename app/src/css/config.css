@@ -7,7 +7,7 @@
 	-webkit-backdrop-filter: blur(10px);
 	transition: all 0.5s ease;
 	border-radius: 10px;
-	padding-bottom: 100vh;
+	padding-bottom: 2vh;
 	overflow: hidden;
 }
 
