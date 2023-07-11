@@ -97,7 +97,7 @@ exit;
 if ($searchprovider != "turned_off") {
     echo '
     <div class="search-bar">
-        <form action="/src/php/search-bar.php" method="POST">
+        <form action="/src/php/main/search-bar.php" method="POST">
             <input type="hidden" name="searchprovider" value="' . $searchprovider . '">
             <input type="text" name="query" id="search-input" placeholder="Search with ' . $searchprovider . '" required>
             <button type="submit" class="search-button">
