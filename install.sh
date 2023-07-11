@@ -250,29 +250,33 @@ echo "" | sudo tee -a "$log_file"
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "Configuring PHP-FPM" | sudo tee -a "$log_file"
+
 # Get PHP version
 PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION;')
 
-# Define PHP configuration
-php_ini_files=(
-  "/etc/php/8.1/fpm/php.ini" 
-  "/etc/php/8.1/cli/php.ini"
-)
+# Define PHP configuration file paths
+php_ini_file_1="/etc/php/8.1/fpm/php.ini"
+php_ini_file_2="/etc/php/8.1/cli/php.ini"
 
 # Function to update PHP configuration
 update_php_configuration() {
   # Update PHP Configuration
-  for php_ini_file in "${php_ini_files[@]}"; do
-    sudo sed -i "s/^post_max_size.*/post_max_size = $max_upload_size/" "$php_ini_file"
-    sudo sed -i "s/^upload_max_filesize.*/upload_max_filesize = $max_upload_size/" "$php_ini_file"
-  done
+  sudo sed -i "s/^post_max_size.*/post_max_size = $max_upload_size/" "$php_ini_file_1"
+  sudo sed -i "s/^upload_max_filesize.*/upload_max_filesize = $max_upload_size/" "$php_ini_file_1"
+
+  sudo sed -i "s/^post_max_size.*/post_max_size = $max_upload_size/" "$php_ini_file_2"
+  sudo sed -i "s/^upload_max_filesize.*/upload_max_filesize = $max_upload_size/" "$php_ini_file_2"
 
   # Configure PHP-FPM
-  sudo sed -i "s|listen = /run/php/php.*-fpm.sock|listen = /run/php/php${PHP_VERSION}-fpm.sock|" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf | sudo tee -a "$log_file" >/dev/null
+  sudo sed -i "s|listen = /run/php/php.*-fpm.sock|listen = /run/php/php${PHP_VERSION}-fpm.sock|" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+  sudo tee -a "$log_file" >/dev/null <<EOF
+PHP-FPM configuration updated for version $PHP_VERSION
+EOF
 }
 
 # Call the update_php_configuration function
 update_php_configuration
+
 echo "Done!" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "" | sudo tee -a "$log_file"
