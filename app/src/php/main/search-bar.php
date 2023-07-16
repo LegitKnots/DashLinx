@@ -9,21 +9,6 @@ if (!isset($_POST['searchprovider'])) {
 
     $tableName = 'general';
 
-    $checkTableQuery = "SHOW TABLES LIKE '$tableName'";
-    $checkTableStatement = mysqli_query($connection, $checkTableQuery);
-
-    if (mysqli_num_rows($checkTableStatement) == 0) {
-        $createTableQuery = "CREATE TABLE $tableName (
-            id INT(11) AUTO_INCREMENT PRIMARY KEY,
-            search_provider VARCHAR(255) NOT NULL DEFAULT 'turned_off'
-        )";
-
-        if (!mysqli_query($connection, $createTableQuery)) {
-            mysqli_close($connection);
-            exit();
-        }
-    }
-
     $query = "SELECT search_provider FROM $tableName";
     $selectStatement = mysqli_query($connection, $query);
 

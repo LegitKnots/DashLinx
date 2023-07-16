@@ -1,4 +1,4 @@
-# DashLinx
+# DashLinx (version 1.2.0 beta)
  Customizable network dashboard that is optimazed to be used for a browser startpage.  It features customizeable shortcut links and a custom search bar.
 
 
@@ -6,7 +6,7 @@
 
 To install DashLinx, simply run the following command
 
-```sh <(curl -sS https://raw.githubusercontent.com/AJPNetworks/DashLinx/main/install.sh)```
+```sh <(curl -sS https://raw.githubusercontent.com/AJPNetworks/DashLinx/beta/install.sh)```
 
 This will download and run the install script which installs all dependancies and sets everything up the way it should.
 
@@ -19,6 +19,11 @@ This will download and run the install script which installs all dependancies an
 `-p` Will let you set the port that the server will listen on. (Default is 80) Note: 443 may not work as expected as there is currently no self-signed cert issued to the server
 
 `-P` Will let you specify a set password for the database that is created (Default is a randomly generated string)
+
+## Disclaimer
+
+This branch is beta and not intended to be stable by any means.  This branch contains all the latest features of this software that have not undergon extensive testing yet.
+
 
 
 ## Donate

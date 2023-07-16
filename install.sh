@@ -291,6 +291,12 @@ echo "" | sudo tee -a "$log_file"
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS dashlinx;" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
 sudo mysql -e "CREATE USER 'dashlinx'@'localhost' IDENTIFIED BY '$password';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
 sudo mysql -e "GRANT ALL PRIVILEGES ON dashlinx.* TO 'dashlinx'@'localhost';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.general (id INT(11) AUTO_INCREMENT PRIMARY KEY, search_provider VARCHAR(255) NOT NULL DEFAULT 'turned_off', config_password VARCHAR(255) DEFAULT NULL, config_token VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.icons (id INT(11) AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) DEFAULT NULL, link VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.buttons (id INT(11) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) DEFAULT NULL, link VARCHAR(255) DEFAULT NULL, image VARCHAR(255) DEFAULT NULL, folder VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "INSERT INTO dashlinx.general (search_provider) SELECT 'turned_off' WHERE NOT EXISTS (SELECT 1 FROM dashlinx.general);"
+
+
 echo "" | sudo tee -a "$log_file"
 echo "Created" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
