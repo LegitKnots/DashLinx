@@ -7,7 +7,7 @@ if (!$connection) {
 if (isset($_POST['search_provider'])) {
     $searchProvider = mysqli_real_escape_string($connection, $_POST['search_provider']);
 
-    $query = "UPDATE search_engine SET search_provider = '$searchProvider'";
+    $query = "UPDATE general SET search_provider = '$searchProvider'";
     $result = mysqli_query($connection, $query);
 
     if ($result) {

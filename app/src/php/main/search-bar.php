@@ -7,7 +7,7 @@ if (!isset($_POST['searchprovider'])) {
         die('Connection failed: ' . mysqli_connect_error());
     }
 
-    $tableName = 'search_engine';
+    $tableName = 'general';
 
     $checkTableQuery = "SHOW TABLES LIKE '$tableName'";
     $checkTableStatement = mysqli_query($connection, $checkTableQuery);
@@ -62,23 +62,45 @@ if (isset($_POST['query'])) {
     );
 
 
-
-
-if (preg_match('/^(.+):(\d+)$/', $query, $matches)) {
-    $address = $matches[1];
-    $port = $matches[2];
-    header("Location: http://$address:$port");
+// starts with http:// or https://
+if (preg_match('/^(https?:\/\/[\S]+)/', $query, $matches)) {
+    header("Location: $query");
     exit;
 }
 
+// Check if the query is a valid domain
+if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/', $query) && checkdnsrr($query)) {
+    header("Location: http://$query");
+    exit;
+}
+
+// Check if the query is a valid address/path
+if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/([a-zA-Z0-9-\/]+)$/', $query)) {
+    header("Location: http://$query");
+    exit;
+}
+
+// address:port/path
+if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?\/([a-zA-Z0-9-\/]+)$/', $query)) {
+    header("Location: http://$query");
+    exit;
+}
+
+// valid IP
 if (filter_var($query, FILTER_VALIDATE_IP)) {
     header("Location: http://$query");
     exit;
-} elseif (preg_match('/^(?:https?:\/\/)?(?:[-A-Za-z0-9]+\.)*[-A-Za-z0-9]+\.[A-Za-z]{2,7}(?:\/.*)?$/', $query)) {
-    if (!preg_match('/^(?:https?:\/\/)/', $query)) {
-        $query = 'http://' . $query;
-    }
-    header("Location: $query");
+}
+
+// address:port
+if (preg_match('/^(.+):(\d+)$/', $query, $matches)) {
+    header("Location: http://$query");
+    exit;
+}
+
+// address:port/path
+if (preg_match('/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)(\/\S*)?$/', $query, $matches)) {
+    header("Location: http://$query");
     exit;
 }
 
@@ -86,9 +108,6 @@ $searchProviderURI = $searchProviders[$searchprovider];
 $searchQuery = urlencode($query);
 header("Location: $searchProviderURI$searchQuery");
 exit;
-
-
-
 
 }
 
