@@ -31,7 +31,7 @@ if (isset($_POST['password'])) { // if psw was given from post
 		if (password_verify($_POST['password'], $psw)) { // if psw matches db
 
 			$expire_time = time() + (60 * 60 * 24 * 14);
-			setcookie('config_token', $token, $expire_time, '', '', true, true);
+			setcookie('config_token', $token, $expire_time, '', '', false, false);
 			
 			header("Refresh: 0");	
 			exit;

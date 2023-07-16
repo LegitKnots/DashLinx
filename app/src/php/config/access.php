@@ -30,8 +30,9 @@ if (isset($_POST['newpsw'])) {
     $stmt->bind_param("s", $token);
     $stmt->execute();
     $stmt->close();
+
     $expire_time = time() + (60 * 60 * 24 * 14);
-    setcookie('config_token', $token, $expire_time, '', '', true, true);
+    setcookie('config_token', $token, $expire_time, '', '', false, false);
 
     header("Refresh: 0");
 }
@@ -42,8 +43,9 @@ if (isset($_POST['chng_status'])) {
     $stmt->bind_param('ss', $null, $null);
     $stmt->execute();
     $stmt->close();
+
     $expire_time = time() - 3600;
-    setcookie('config_token', $null, $expire_time, '', '', true, true);
+    setcookie('config_token', $null, $expire_time, '', '', false, false);
 
     header("Refresh: 0");
 }
