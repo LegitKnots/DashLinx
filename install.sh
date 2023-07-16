@@ -46,6 +46,12 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install mysql-server -y | sudo tee -
 echo "" | sudo tee -a "$log_file"
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing php-fpm" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install php-fpm -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "Installing php8.1-fpm" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install php8.1-fpm -y | sudo tee -a "$log_file" >/dev/null
@@ -62,13 +68,6 @@ echo "Installing git" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install git -y | sudo tee -a "$log_file" >/dev/null
 echo "" | sudo tee -a "$log_file"
-
-echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
-echo "Installing php-fpm" | sudo tee -a "$log_file"
-echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
-sudo DEBIAN_FRONTEND=noninteractive apt-get install php-fpm -y | sudo tee -a "$log_file" >/dev/null
-echo "" | sudo tee -a "$log_file"
-
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "All packages installed" | sudo tee -a "$log_file"
