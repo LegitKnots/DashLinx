@@ -47,47 +47,48 @@ if (isset($_POST['query'])) {
     );
 
 
-// starts with http:// or https://
+// Starts with http:// or https://
 if (preg_match('/^(https?:\/\/[\S]+)/', $query, $matches)) {
     header("Location: $query");
     exit;
 }
 
-// Check if the query is a valid domain
-if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/', $query) && checkdnsrr($query)) {
+// domain
+if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,18}$/', $query)) {
     header("Location: http://$query");
     exit;
 }
 
-// Check if the query is a valid address/path
-if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/([a-zA-Z0-9-\/]+)$/', $query)) {
+// address/path
+if (preg_match('/^(([\w-]+\.)+)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,18}\/([a-zA-Z0-9-\/]+)$/', $query)) {
     header("Location: http://$query");
     exit;
 }
 
 // address:port/path
-if (preg_match('/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?\/([a-zA-Z0-9-\/]+)$/', $query)) {
+if (preg_match('/^(([\w-]+\.)+)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,18}(:\d+)?\/([a-zA-Z0-9-\/]+)$/', $query)) {
     header("Location: http://$query");
     exit;
 }
 
-// valid IP
+// IP
 if (filter_var($query, FILTER_VALIDATE_IP)) {
     header("Location: http://$query");
     exit;
 }
 
 // address:port
-if (preg_match('/^(.+):(\d+)$/', $query, $matches)) {
+if (preg_match('/^(([\w-]+\.)+)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,18}(:\d+)$/', $query, $matches)) {
     header("Location: http://$query");
     exit;
 }
 
 // address:port/path
-if (preg_match('/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)(\/\S*)?$/', $query, $matches)) {
+if (preg_match('/^(([\w-]+\.)+)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)(\/\S*)?$/', $query, $matches)) {
     header("Location: http://$query");
     exit;
 }
+
 
 $searchProviderURI = $searchProviders[$searchprovider];
 $searchQuery = urlencode($query);
