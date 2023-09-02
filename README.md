@@ -10,6 +10,12 @@ To install DashLinx, simply run the following command
 
 This will download and run the install script which installs all dependancies and sets everything up the way it should.
 
+On some installs (like containers), you may need to install curl, apt-utils and/or sudo to get the installer to work properly.  You can make sure they are installed with the following:
+`apt-get install apt-utils curl sudo`
+
+Or if sudo is already installed:
+`sudo apt-get install apt-utils curl`
+
 ## Options
 
 `-t` Will let you customize the Title of the page in the title bar. (Default is DashLinx)
