@@ -1,3 +1,16 @@
+.login_content {
+	width: 25vw;
+	height: 33vh;
+	margin: 15vh auto 0 auto;
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: all 0.5s ease;
+	border-radius: 10px;
+	padding-bottom: 2vh;
+	overflow: hidden;
+}
+
 .content {
 	width: 50vw;
 	height: 75vh;
@@ -140,16 +153,20 @@ footer {
 		left: 0;
 		width: 150px;
 	}
-	.content {
+	.content, .login_content {
 		width: 90vw;
 		height: 75vh;
 		margin: 2vh auto;
 		padding-bottom: 5vh;
 	}
+	.login_content {
+		margin-top: 75px;
+		height: 45vh !important;
+	}
 }
 
 @media screen and (max-width: 360px) {
-	.content {
+	.content, .login_content {
 		width: 95vw;
 		height: 75vh;
 	}

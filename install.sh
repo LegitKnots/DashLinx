@@ -46,6 +46,12 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install mysql-server -y | sudo tee -
 echo "" | sudo tee -a "$log_file"
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+echo "Installing php-fpm" | sudo tee -a "$log_file"
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install php-fpm -y | sudo tee -a "$log_file" >/dev/null
+echo "" | sudo tee -a "$log_file"
+
+echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "Installing php8.1-fpm" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install php8.1-fpm -y | sudo tee -a "$log_file" >/dev/null
@@ -62,13 +68,6 @@ echo "Installing git" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install git -y | sudo tee -a "$log_file" >/dev/null
 echo "" | sudo tee -a "$log_file"
-
-echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
-echo "Installing php-fpm" | sudo tee -a "$log_file"
-echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
-sudo DEBIAN_FRONTEND=noninteractive apt-get install php-fpm -y | sudo tee -a "$log_file" >/dev/null
-echo "" | sudo tee -a "$log_file"
-
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "All packages installed" | sudo tee -a "$log_file"
@@ -159,7 +158,7 @@ echo "" | sudo tee -a "$log_file"
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "Downloading DashLinx" | sudo tee -a "$log_file"
-git clone https://github.com/AJPNetworks/DashLinx.git | sudo tee -a "$log_file" >/dev/null
+git clone -b beta https://github.com/AJPNetworks/DashLinx.git | sudo tee -a "$log_file" >/dev/null
 echo "Downloaded" | sudo tee -a "$log_file"
 echo "Installing" | sudo tee -a "$log_file"
 sudo cp -R DashLinx/app/* /var/www/html
@@ -291,6 +290,12 @@ echo "" | sudo tee -a "$log_file"
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS dashlinx;" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
 sudo mysql -e "CREATE USER 'dashlinx'@'localhost' IDENTIFIED BY '$password';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
 sudo mysql -e "GRANT ALL PRIVILEGES ON dashlinx.* TO 'dashlinx'@'localhost';" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.general (id INT(11) AUTO_INCREMENT PRIMARY KEY, search_provider VARCHAR(255) NOT NULL DEFAULT 'turned_off', config_password VARCHAR(255) DEFAULT NULL, config_token VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.icons (id INT(11) AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) DEFAULT NULL, link VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "CREATE TABLE dashlinx.buttons (id INT(11) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) DEFAULT NULL, link VARCHAR(255) DEFAULT NULL, image VARCHAR(255) DEFAULT NULL, folder VARCHAR(255) DEFAULT NULL);" 2>/dev/null | sudo tee -a "$log_file" >/dev/null
+sudo mysql -e "INSERT INTO dashlinx.general (search_provider) SELECT 'turned_off' WHERE NOT EXISTS (SELECT 1 FROM dashlinx.general);"
+
+
 echo "" | sudo tee -a "$log_file"
 echo "Created" | sudo tee -a "$log_file"
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
