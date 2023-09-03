@@ -48,8 +48,12 @@ if (mysqli_num_rows($result) > 0) {
             $folders[] = $row;
         }
     }
-    $folders = array_reverse($folders); // reverses array so first created folders show first
-    $buttons = array_reverse($buttons); // reverses array so first created buttons show first
+    
+    // legit cant tell whats going on with this, on WAMP, the array is one way, on the nginx server installed from the script its the complete other way???????????
+    //$folders = array_reverse($folders); // reverses array so first created folders show first
+    //$buttons = array_reverse($buttons); // reverses array so first created buttons show first
+    
+    
     // loops through folders
     foreach ($folders as $folder) {
         echo "<div class='shortcut blur-when-folderOpen' id='".$folder['folder']."_openFolder' onclick=\"openFolder('".$folder['folder']."')\"><img src='".$folder['image']."'><h1>".$folder['title']."</h1></div>";
