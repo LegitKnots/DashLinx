@@ -60,6 +60,7 @@ if (mysqli_num_rows($result) > 0) {
             echo "<div class='folderOpen-header'><img src='".$image."'><h1>".$title."</h1>";
             echo "<div class='folderOpen-closeBtn' onclick=\"closeAllFolders()\"><i class='fa-solid fa-xmark'></i></div>";
             echo "</div>";
+            echo "<div class='folder-shortcuttiles'>";
 
                 while($folderRow = mysqli_fetch_assoc($folderResult)) {
 
@@ -68,6 +69,8 @@ if (mysqli_num_rows($result) > 0) {
                         echo "<div style='display: flex;' class='shortcut' id='".$folderRow['folder']."' onclick=\"window.location.href='".$folderRow['link']."'\"><img src='".$folderRow['image']."'><h1>".$folderRow['title']."</h1></div>";
                     }
                 }
+
+            echo "</div>";
             echo "</div>";
             
 

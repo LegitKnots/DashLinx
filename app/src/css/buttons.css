@@ -56,6 +56,17 @@
 	box-shadow: rgba(0, 0, 0, 0.7) 0px 60px 40px -7px !important;
 }
 
+.folder-shortcuttiles {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 5vh;
+	width: 75vw;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	overflow-y: scroll;
+}
+
 .folderOpen-header {
 	z-index: 101;
 	padding: 10px;
