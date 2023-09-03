@@ -9,12 +9,12 @@ $page_title = 'DashLinx';
 
 //Define your database credentials here, a database is utilized to store all of the buttons and links that are displayed on the page
 $db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'dashlinx';
+$db_user = 'dash_board';
+$db_pass = 'P@$$W0RD';
+$db_name = 'dash_board';
 
 
 // Define the public html root directory here (don't add the trailing / )
 // If this is not set properly, custom icon files will not work properly and you may end up putting them in an undesired place.
 
-$root_dir = 'C:\Users\Alexander Phillipson\Documents\WAMP\DashLinx';
+$root_dir = '/var/www/html';
