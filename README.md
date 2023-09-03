@@ -26,6 +26,13 @@ Or if sudo is already installed:
 
 `-P` Will let you specify a set password for the database that is created (Default is a randomly generated string)
 
+
+## Demo
+
+There are some screenshots of my personal install in the `/demo-images` folder that you may want to check out
+
+
+
 ## Disclaimer
 
 This branch is beta and not intended to be stable by any means.  This branch contains all the latest features of this software that have not undergon extensive testing yet.
