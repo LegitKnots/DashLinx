@@ -12,7 +12,7 @@ if (!$connection) {
 $tableName = 'buttons';
 
 // Create a SQL query to select the desired columns from the table
-$query = "SELECT id, title, folder FROM $tableName WHERE type='button';";
+$query = "SELECT id, title FROM $tableName WHERE type='folder';";
 
 // Execute the query
 $result = mysqli_query($connection, $query);
@@ -24,17 +24,13 @@ if (mysqli_num_rows($result) > 0) {
         
         $id = $row['id'];
         $title = $row['title'];
-        $folder = $row['folder'];
 
-        if ($folder != "none") {
-            echo "<option value='".$id."'>".$title." - Folder: ".$folder."</option>";
-        } else {
-            echo "<option value='".$id."'>".$title."</option>";
-        }
+        
+        echo "<option value='".$id."'>".$title."</option>";
         
     }
 } else {
-    echo "<option disabled>No Buttons Added</option>";
+    echo "<option disabled>No Folders Added</option>";
 }
 
 // Close the database connection

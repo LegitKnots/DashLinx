@@ -40,6 +40,66 @@
   	box-shadow: rgba(0, 0, 0, 0.1) 0px 60px 40px -7px !important;
   	cursor: pointer;
 }
+
+.folderOpen {
+	z-index: 100;
+	position: fixed;
+	display: none;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
+	top: 10vh;
+	width: 75vw;
+	height: 75vh;
+	border-radius: 10px;
+	background-color: rgba(200, 200, 200, 0.4) !important;
+	box-shadow: rgba(0, 0, 0, 0.7) 0px 60px 40px -7px !important;
+}
+
+.folderOpen-header {
+	z-index: 101;
+	padding: 10px;
+	width: 95%;
+	height: 10vh;
+	text-align: center;
+	flex-direction: row;
+	display: flex;
+	align-items: center;
+	background-color: none;
+}
+
+.folderOpen-header > img {
+	z-index: 101;
+	width: 5em;
+	margin-right: 1vw;
+}
+.folderOpen-dimBG {
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	filter: blur(500px);
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.2) !important;	
+}
+.folderOpen-closeBtn {
+	margin-left: auto;
+	margin-right: 1vw;
+	width: auto;
+}
+.folderOpen-closeBtn > i {
+	z-index: 101;
+	font-size: 40px !important;
+	height: 10px !important;
+	color: rgba(255, 255, 255, 0.6) !important;
+	transition: color 0.2s ease;
+}
+
+.folderOpen-closeBtn > i:hover {
+	color: rgba(255, 255, 255, 0.8) !important;
+	cursor: pointer;
+}
+
 #lower-button {
 	width: auto;
 	height: 30px;

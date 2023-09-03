@@ -101,7 +101,7 @@ exit;
 // Only displays the search bar if the search provider is set in the database, i.e., not turned off in the settings
 if ($searchprovider != "turned_off") {
     echo '
-    <div class="search-bar">
+    <div class="search-bar blur-when-folderOpen">
         <form action="/src/php/main/search-bar.php" method="POST">
             <input type="hidden" name="searchprovider" value="' . $searchprovider . '">
             <input type="text" name="query" id="search-input" placeholder="Search with ' . $searchprovider . '" required>

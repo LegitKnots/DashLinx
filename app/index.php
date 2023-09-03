@@ -27,7 +27,7 @@ include('src/php/session.php');
   </div>
 
 </body>
-<footer>
+<footer class="blur-when-folderOpen">
   <button id="lower-button" onclick="window.location.href='/config'">Configure</button>
   <br>
   <p>Made by AJP Networks LLC :)</p>
