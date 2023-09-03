@@ -1,4 +1,4 @@
-# DashLinx (version 1.2.1 beta)
+# DashLinx (version 2.0.0 beta)
  Customizable network dashboard that is optimazed to be used for a browser startpage.  It features customizeable shortcut links and a custom search bar.
 
 
