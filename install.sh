@@ -158,7 +158,7 @@ echo "" | sudo tee -a "$log_file"
 
 echo "-------------------------------------------------------------" | sudo tee -a "$log_file"
 echo "Downloading DashLinx" | sudo tee -a "$log_file"
-git clone -b beta https://github.com/AJPNetworks/DashLinx.git | sudo tee -a "$log_file" >/dev/null
+git clone -b main https://github.com/AJPNetworks/DashLinx.git | sudo tee -a "$log_file" >/dev/null
 echo "Downloaded" | sudo tee -a "$log_file"
 echo "Installing" | sudo tee -a "$log_file"
 sudo cp -R DashLinx/app/* /var/www/html
