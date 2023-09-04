@@ -1,6 +1,10 @@
 # DashLinx (version 1.2.1)
  Customizable network dashboard that is optimazed to be used for a browser startpage.  It features customizeable shortcut links and a custom search bar.
 
+ ### Demo
+
+ We have published a demo install that is publically accessable at https://demo.dashlinx.com
+
 
 ## Instalation
 
